@@ -1,1 +1,1 @@
-web: gunicorn gettingstartted.wsgi
+web: python suke8.py
