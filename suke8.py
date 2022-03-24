@@ -11,7 +11,7 @@ auth.set_access_token(AccessToken,AccessTokenSecret)
 
 api = tweepy.API(auth)
 
-objects = api.search_tweets(q="出稼ぎ", result_type="recent", count=5)
+objects = api.search_tweets(q="出稼ぎ", count=100)
 #print(objects)
 
 for object in objects:
