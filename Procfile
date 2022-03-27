@@ -1,1 +1,1 @@
-web: gunicorn suke8.py : app --log-file -
+web: gunicorn suke8 : suke8 --log-file -
