@@ -1,1 +1,1 @@
-web: gunicorn suke8 : app
+web: gunicorn suke8 : app --log-file -
