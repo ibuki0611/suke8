@@ -2,8 +2,9 @@
  on:
   # 日本時間9:00～20:00の間、1時間おきに実行する
   # 下記の時刻指定は協定世界時(UTC)になっていることに注意。
-  schedule:
-    - cron: '0 0-11 * * *'
+  #schedule:
+  #  - cron: '0 0-11 * * *'
+  workflow_dispatch:
  env:
    BEARER_TOKEN: ${{secrets.BEARER_TOKEN}}
    TWITTER_API_KEY: ${{secrets.TWITTER_API_KEY}}
