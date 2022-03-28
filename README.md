@@ -1,2 +1,0 @@
-# suke8
-scouenyatu
