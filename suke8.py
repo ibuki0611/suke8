@@ -1,24 +1,55 @@
 import tweepy
+import os
+import time
+from dotenv import load_dotenv
 
-Apikey = "MrXSB2VYQJJYKuLsfbnnG6c2a"
-ApikeySecret = "I5Vbo6jpJDNakeyvcggVqSEfWGxmNxyyBabRyu5c1iTrP5TdFs"
-AccessToken = "1476512981748187137-KrBrg1JD3adzn58V1ClG9ReFShuIqh"
-AccessTokenSecret = "sia6Va8s6AcoDs1ZevZMIg3fI9zMTdMtpo3fVCzM4EOzF"
+FETCH_TWEET_NUM = 100  # 1回の実行で取得するツイートの数
+LIKE_TWEET_NUM = 3  # 1回の実行でLIKEするツイートの数
+LIKE_TIMESPAN = 10  # いいねする感覚。[秒]
+
+load_dotenv()
+api_key = os.getenv("TWITTER_API_KEY")
+api_secret = os.getenv("TWITTER_API_SECRET")
+access_token = os.getenv("TWITTER_ACCESS_TOKEN")
+access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
+bearer_token = os.getenv("BEARER_TOKEN")
 
 
-auth =  tweepy.OAuthHandler(Apikey,ApikeySecret)
-auth.set_access_token(AccessToken,AccessTokenSecret)
+def get_client():
+    return tweepy.Client(bearer_token, api_key, api_secret, access_token, access_token_secret)
 
-api = tweepy.API(auth)
 
-objects = api.search_tweets(q="出稼ぎ", result_type="recent", count=5)
-#print(objects)
-
-for object in objects:
-
+def fetch_tweets(client):
+    """ツイートを取得する。
+    """
+    tweet_list = []
     try:
-        retweetId = object.id
-        api.retweet(retweetId)
-
-    except tweepy.TweepError as e:
+        query = "出稼ぎ"
+        tweet_list = client.search_recent_tweets(query, max_results=FETCH_TWEET_NUM).data
+    except Exception as e:
         print(e)
+    return tweet_list
+
+
+def exec_like(client, tweet_list):
+    """いいねを実行する。
+    """
+    liked_count = 0
+    for tweet in tweet_list:
+        if liked_count >= LIKE_TWEET_NUM:
+            break
+        liked_count += 1
+        id = tweet["id"]
+        client.like(tweet_id=id)
+        print(f"like tweet: {id}")
+        time.sleep(LIKE_TIMESPAN)
+
+
+def main():
+    client = get_client()
+    tweet_list = fetch_tweets(client)
+    exec_like(client, tweet_list)
+
+
+if __name__ == "__main__":
+    main()
