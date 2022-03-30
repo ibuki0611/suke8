@@ -3,9 +3,9 @@ import os
 import time
 from dotenv import load_dotenv
 
-FETCH_TWEET_NUM = 20  # 1回の実行で取得するツイートの数
-LIKE_TWEET_NUM = 5  # 1回の実行でLIKEするツイートの数
-LIKE_TIMESPAN = 15  # いいねする感覚。[秒]
+FETCH_TWEET_NUM = 50  # 1回の実行で取得するツイートの数
+LIKE_TWEET_NUM = 15  # 1回の実行でLIKEするツイートの数
+LIKE_TIMESPAN = 20  # いいねする感覚。[秒]
 
 load_dotenv()
 api_key = os.getenv("TWITTER_API_KEY")
