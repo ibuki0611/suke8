@@ -24,7 +24,7 @@ def fetch_tweets(client):
     """
     tweet_list = []
     try:
-        query = "在籍ほしい or 在籍欲しい or 出稼ぎ行きたい or お茶引いた or 体入行きたい or 在籍探す"
+        query = "在籍ほしい OR 在籍欲しい OR 出稼ぎ行きたい OR お茶引いた OR 体入行きたい OR 在籍探す"
         tweet_list = client.search_recent_tweets(query, max_results=FETCH_TWEET_NUM).data
     except Exception as e:
         print(e)
