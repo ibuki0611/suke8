@@ -34,7 +34,7 @@ def fetch_tweets(client):
 def exec_like(client, tweet_list):
     """いいねを実行する。
     """
-    liked_count = 0
+    liked_count = 
     for tweet in tweet_list:
         if liked_count >= LIKE_TWEET_NUM:
             break
