@@ -2,8 +2,9 @@
  on:
   # 30分毎に起動する
   # 下記の時刻指定は協定世界時(UTC)になっていることに注意。
-   schedule:
-    - cron: '30 * * * *'
+   workflow_dispatch:
+   #schedule: 
+    #- cron: '30 * * * *'
  env:
    BEARER_TOKEN: ${{secrets.BEARER_TOKEN}}
    TWITTER_API_KEY: ${{secrets.TWITTER_API_KEY}}
