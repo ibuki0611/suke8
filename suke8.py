@@ -4,7 +4,7 @@ import time
 from dotenv import load_dotenv
 
 FETCH_TWEET_NUM = 100  # 1回の実行で取得するツイートの数
-LIKE_TWEET_NUM = 3  # 1回の実行でLIKEするツイートの数
+LIKE_TWEET_NUM = 5  # 1回の実行でLIKEするツイートの数
 LIKE_TIMESPAN = 10  # いいねする感覚。[秒]
 
 load_dotenv()
@@ -24,7 +24,7 @@ def fetch_tweets(client):
     """
     tweet_list = []
     try:
-        query = "在籍ほしい OR 在籍欲しい OR 出稼ぎ行きたい OR お茶引いた OR 体入行きたい OR 在籍探す"
+        query = "出稼ぎ OR 出稼ぎ行きたい OR 出稼ぎいきたい OR 出稼ぎ暇 OR 出稼ぎ保証 OR 在籍探し OR 在籍変えたい OR 在籍暇 OR 保証割れ OR スカウトさん "
         tweet_list = client.search_recent_tweets(query, max_results=FETCH_TWEET_NUM).data
     except Exception as e:
         print(e)
